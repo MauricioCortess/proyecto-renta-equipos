@@ -5,30 +5,47 @@ import { RouterLink } from 'vue-router'
 <template>
   <div class="relative h-screen bg-cover bg-center bg-no-repeat" 
        style="background-image: url('/mi-fondo-hero.jpg');">
-       <div class="absolute inset-0 bg-brand-blue opacity-70"></div>
+       
+    <div class="absolute inset-0 bg-brand-blue opacity-70"></div>
     
     <div class="relative z-10 container mx-auto flex flex-col items-center justify-center py-24 px-4 text-center h-full">
-      
       <h1 class="text-5xl font-bold leading-tight text-white">
         Renta el Poder que Necesitas,
         <br />
         <span class="text-brand-orange">Cuando lo Necesitas.</span>
       </h1>
-      
       <p class="text-xl text-gray-200 mt-6 max-w-2xl">
         Accede a estaciones de trabajo de alto rendimiento, laptops gamer y servidores para tus proyectos más exigentes, sin la necesidad de comprar.
       </p>
-
       <RouterLink 
          to="/catalogo" 
          class="bg-brand-orange hover:bg-opacity-80 text-black font-bold text-lg px-8 py-3 rounded-full mt-10 transition-colors">
         Ver Catálogo de Equipos
       </RouterLink>
-
     </div>
   </div>
 
   <div class="bg-white py-20">
+    <div class="container mx-auto px-4 max-w-3xl text-center">
+      
+      <p class="text-base text-gray-600 font-semibold uppercase tracking-wider">
+        Usa el arrendamiento a favor del crecimiento de tu empresa
+      </p>
+
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue mt-4 mb-6">
+        Renta de computadoras, laptops, pantallas y equipo de cómputo en general
+      </h2>
+
+      <div class="w-24 h-1 bg-brand-orange mx-auto mb-6"></div>
+
+      <p class="text-lg text-gray-700 leading-relaxed">
+        En <span class="font-bold text-brand-blue">RentxTech</span> te asesoramos, renta el equipo que mejor se adecue a las necesidades de tu estación de trabajo o evento. Tenemos cobertura a nivel nacional y garantía de servicio.
+      </p>
+
+    </div>
+  </div>
+
+  <div class="bg-gray-100 py-20">
     <div class="container mx-auto px-4">
       
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
