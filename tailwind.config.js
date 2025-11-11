@@ -5,7 +5,14 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    // La sección 'extend' es CRUCIAL.
+    // Si no pones 'extend', borras todos los colores por defecto de Tailwind.
+    extend: {
+      colors: {
+        'brand-blue': '#0D1B2A',   // Tu azul oscuro
+        'brand-orange': '#FF7F11', // Tu naranja
+      }
+    },
   },
   plugins: [],
 }

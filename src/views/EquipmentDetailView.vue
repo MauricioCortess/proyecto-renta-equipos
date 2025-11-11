@@ -142,7 +142,7 @@ function handleReserva() {
                   to="/login"
                   class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg text-lg inline-block"
                 >
-                  Ir a Login
+                  Iniciar Sesión
                 </RouterLink>
               </div>
             </div>

@@ -1,19 +1,21 @@
 <script setup lang="ts">
-// 1. Importamos los componentes que necesitamos
 import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue' 
+import Footer from './components/Footer.vue' // <-- 1. IMPORTAMOS EL FOOTER
 </script>
 
 <template>
-  <Navbar />
+  <div class="flex flex-col min-h-screen">
+    
+    <Navbar />
 
-  <main>
-    <RouterView />
-  </main>
+    <main class="flex-grow">
+      <RouterView />
+    </main>
 
-  </template>
+    <Footer /> </div>
+</template>
 
 <style>
-/* Aquí pondremos estilos GLOBALES si los necesitamos,
-   pero la mayoría vendrán de Tailwind (main.css) */
+/* Estilos globales (los de Tailwind ya se importan en main.css) */
 </style>

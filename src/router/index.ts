@@ -40,7 +40,12 @@ const router = createRouter({
       next('/') // El usuario no es admin, redirígelo al inicio
     }
   }
-}
+},
+{
+      path: '/nosotros',
+      name: 'nosotros',
+      component: () => import('../views/NosotrosView.vue')
+    }
   ],
 })
 
