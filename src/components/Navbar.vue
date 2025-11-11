@@ -36,7 +36,7 @@ function handleLogout() {
           <RouterLink v-if="authStore.isAdmin"
              to="/admin" 
              class="hover:text-brand-orange font-bold text-white">
-            Admin Panel
+            Panel de Administrador
           </RouterLink>
           
           <button 
