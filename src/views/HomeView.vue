@@ -1,19 +1,21 @@
 <script setup lang="ts">
-// 1. Importamos RouterLink para usarlo en los botones
 import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <div class="bg-brand-blue text-white">
-    <div class="container mx-auto flex flex-col items-center py-24 px-4 text-center">
+  <div class="relative h-screen bg-cover bg-center bg-no-repeat" 
+       style="background-image: url('/mi-fondo-hero.jpg');">
+       <div class="absolute inset-0 bg-brand-blue opacity-70"></div>
+    
+    <div class="relative z-10 container mx-auto flex flex-col items-center justify-center py-24 px-4 text-center h-full">
       
-      <h1 class="text-5xl font-bold leading-tight">
+      <h1 class="text-5xl font-bold leading-tight text-white">
         Renta el Poder que Necesitas,
         <br />
         <span class="text-brand-orange">Cuando lo Necesitas.</span>
       </h1>
       
-      <p class="text-xl text-gray-300 mt-6 max-w-2xl">
+      <p class="text-xl text-gray-200 mt-6 max-w-2xl">
         Accede a estaciones de trabajo de alto rendimiento, laptops gamer y servidores para tus proyectos más exigentes, sin la necesidad de comprar.
       </p>
 
