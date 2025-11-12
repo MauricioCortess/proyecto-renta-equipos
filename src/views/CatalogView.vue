@@ -1,8 +1,22 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue' 
+import { ref, computed, onMounted } from 'vue' // <-- Importamos onMounted
+import { useRoute } from 'vue-router' // <-- Importamos useRoute
 import EquipmentCard from '@/components/EquipmentCard.vue';
 
 const selectedCategory = ref('todos') 
+const route = useRoute() // <-- Obtenemos la información de la ruta actual
+
+// --- ¡ESTA ES LA LÓGICA CLAVE! ---
+// onMounted se ejecuta 1 vez cuando la página se carga
+onMounted(() => {
+  // Comprueba si la URL tiene un parámetro '?categoria=...'
+  if (route.query.categoria) {
+    // Si existe, establece el filtro con ese valor
+    selectedCategory.value = route.query.categoria as string
+  }
+})
+// --- FIN DE LA LÓGICA ---
+
 
 const equipos = ref([
   {
@@ -101,7 +115,7 @@ const filteredEquipos = computed(() => {
                     'w-full text-left px-4 py-2 rounded-md transition-colors',
                     selectedCategory === 'todos' 
                       ? 'bg-brand-orange text-black font-bold' /* Estilo Activo */
-                      : 'bg-gray-200 hover:bg-gray-300 text-gray-700' /* 5. CAMBIO: Estilo Inactivo */
+                      : 'bg-gray-200 hover:bg-gray-300 text-gray-700' /* Estilo Inactivo */
                   ]"
                 >
                   Todos los Equipos
@@ -114,7 +128,7 @@ const filteredEquipos = computed(() => {
                     'w-full text-left px-4 py-2 rounded-md transition-colors',
                     selectedCategory === 'workstation' 
                       ? 'bg-brand-orange text-black font-bold' /* Estilo Activo */
-                      : 'bg-gray-200 hover:bg-gray-300 text-gray-700' /* 5. CAMBIO: Estilo Inactivo */
+                      : 'bg-gray-200 hover:bg-gray-300 text-gray-700' /* Estilo Inactivo */
                   ]"
                 >
                   PC Escritorio
@@ -127,7 +141,7 @@ const filteredEquipos = computed(() => {
                     'w-full text-left px-4 py-2 rounded-md transition-colors',
                     selectedCategory === 'laptop' 
                       ? 'bg-brand-orange text-black font-bold' /* Estilo Activo */
-                      : 'bg-gray-200 hover:bg-gray-300 text-gray-700' /* 5. CAMBIO: Estilo Inactivo */
+                      : 'bg-gray-200 hover:bg-gray-300 text-gray-700' /* Estilo Inactivo */
                   ]"
                 >
                   Laptop
@@ -140,7 +154,7 @@ const filteredEquipos = computed(() => {
                     'w-full text-left px-4 py-2 rounded-md transition-colors',
                     selectedCategory === 'servidor' 
                       ? 'bg-brand-orange text-black font-bold' /* Estilo Activo */
-                      : 'bg-gray-200 hover:bg-gray-300 text-gray-700' /* 5. CAMBIO: Estilo Inactivo */
+                      : 'bg-gray-200 hover:bg-gray-300 text-gray-700' /* Estilo Inactivo */
                   ]"
                 >
                   Servidores

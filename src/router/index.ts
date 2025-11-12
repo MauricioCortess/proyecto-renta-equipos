@@ -45,6 +45,20 @@ const router = createRouter({
       path: '/nosotros',
       name: 'nosotros',
       component: () => import('../views/NosotrosView.vue')
+    },
+    {
+      path: '/perfil',
+      name: 'perfil',
+      component: () => import('../views/ProfileView.vue'),
+      // ¡Guardia de Ruta!
+      beforeEnter: (to, from, next) => {
+        const auth = useAuthStore()
+        if (auth.isLoggedIn) {
+          next() // El usuario está logueado, déjalo pasar
+        } else {
+          next('/login') // No está logueado, envíalo al login
+        }
+      }
     }
   ],
 })
