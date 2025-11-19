@@ -2,40 +2,40 @@
 import { useRoute, useRouter, RouterLink } from 'vue-router'
 import { ref, computed } from 'vue' 
 import { useAuthStore } from '@/stores/auth'
-// --- 1. IMPORTAMOS EL NUEVO CEREBRO DE RESERVAS ---
-import { useReservasStore, type Reserva } from '@/stores/reservas' 
+import { useReservasStore, type Reserva } from '@/stores/reservas'
+// --- 1. IMPORTAMOS EL STORE DE EQUIPOS ---
+import { useEquiposStore } from '@/stores/equipos'
 
 // --- Stores y Router ---
 const route = useRoute()
 const router = useRouter()
 const authStore = useAuthStore()
-// --- 2. INICIALIZAMOS EL CEREBRO DE RESERVAS ---
 const reservasStore = useReservasStore()
+const equiposStore = useEquiposStore() // Inicializamos el store
 
 // --- Variables del formulario ---
 const fechaInicio = ref('')
 const fechaFin = ref('')
 
-// --- Datos Simulados (como antes) ---
-const equipoId = route.params.id
-const equipoSimulado = ref({
-    "id": equipoId,
-    "nombre": "Workstation Pro Z-Series (Cargado)",
-    "precioPorDia": 120,
-    "disponible": true,
-    "imagenUrl": "https://i.imgur.com/gA9mEwS.png",
-    "specs": [
-      "Intel Xeon W-2223",
-      "64GB RAM DDR4",
-      "NVIDIA Quadro RTX 4000 8GB",
-      "1TB SSD NVMe",
-      "Fuente 750W Gold",
-      "Windows 11 Pro"
-    ],
-    "descripcionLarga": "Perfecta para modelado 3D, análisis de datos y desarrollo de software exigente. Esta workstation ofrece el máximo rendimiento y fiabilidad para profesionales."
-})
+// --- 2. OBTENER DATOS REALES DEL STORE ---
+const equipoId = Number(route.params.id) // Convertimos ID de URL a número
+// Buscamos el equipo en el store usando su ID
+const equipoEncontrado = equiposStore.getEquipoById(equipoId)
 
-// --- Lógica de Cálculo (como antes) ---
+// Si por alguna razón no existe (ej. ID inválido), usamos uno por defecto
+const equipoSimulado = ref(equipoEncontrado || {
+    id: 0,
+    nombre: "Equipo no encontrado",
+    categoria: "error",
+    precioPorDia: 0,
+    disponible: false,
+    imagenUrl: "",
+    specs: ["No hay especificaciones disponibles"],
+    descripcion: "Lo sentimos, no pudimos encontrar este equipo."
+})
+// ------------------------------------------
+
+// --- Lógica de Cálculo ---
 const costoTotalComputado = computed(() => {
   if (!fechaInicio.value || !fechaFin.value) { return 0 }
   const dateInicio = new Date(fechaInicio.value + 'T00:00:00')
@@ -47,7 +47,7 @@ const costoTotalComputado = computed(() => {
 })
 
 
-// --- 3. ¡FUNCIÓN DE RESERVA ACTUALIZADA! ---
+// --- Función de Reserva ---
 function handleReserva() {
   if (!authStore.isLoggedIn) {
     alert("Por favor, inicia sesión para poder rentar un equipo.")
@@ -60,10 +60,8 @@ function handleReserva() {
     return
   }
 
-  // --- ¡NUEVA LÓGICA DE GUARDADO! ---
-  // 1. Creamos el objeto de la reserva
   const nuevaReserva: Reserva = {
-    id: Date.now(), // Usamos la fecha actual como un ID único (simulación)
+    id: Date.now(), 
     equipoNombre: equipoSimulado.value.nombre,
     equipoImagen: equipoSimulado.value.imagenUrl,
     fechaInicio: fechaInicio.value,
@@ -71,13 +69,10 @@ function handleReserva() {
     costoTotal: costoTotalComputado.value
   }
 
-  // 2. Llamamos a la acción del "cerebro" para guardarla
   reservasStore.addReserva(nuevaReserva)
-  // --- FIN DE LA NUEVA LÓGICA ---
 
   alert(`¡Reserva confirmada exitosamente!\nTotal: $${costoTotalComputado.value}`)
   
-  // 4. Redirigimos al catálogo (o al perfil, como queramos)
   router.push('/catalogo')
 }
 </script>
@@ -89,7 +84,7 @@ function handleReserva() {
       <div class="flex flex-col md:flex-row gap-8">
         
         <div class="md:w-1/2">
-          <img :src="equipoSimulado.imagenUrl" :alt="equipoSimulado.nombre" class="w-full rounded-lg shadow-md">
+          <img :src="equipoSimulado.imagenUrl" :alt="equipoSimulado.nombre" class="w-full rounded-lg shadow-md h-64 object-cover">
         </div>
 
         <div class="md:w-1/2">
@@ -99,7 +94,7 @@ function handleReserva() {
             ${{ equipoSimulado.precioPorDia }} <span class="text-lg text-gray-500">/ día</span>
           </p>
           
-          <p class="text-gray-600 mb-4">{{ equipoSimulado.descripcionLarga }}</p>
+          <p class="text-gray-600 mb-4">{{ equipoSimulado.descripcion }}</p>
 
           <span v-if="equipoSimulado.disponible" 
                 class="inline-block bg-green-200 text-green-800 px-3 py-1 rounded-full uppercase font-semibold">
