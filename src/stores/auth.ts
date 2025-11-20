@@ -1,4 +1,3 @@
-// src/stores/auth.ts
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 
@@ -10,22 +9,24 @@ export interface User {
   rol: string;
   telefono: string;
   cp: string;
-  direccion: string; // <-- AÑADIDO
+  direccion: string;
+  rfc_curp: string; // <-- NUEVO: Identificación Fiscal/Legal
+  tarjeta: string;  // <-- NUEVO: Terminación de tarjeta
 }
 
 export const useAuthStore = defineStore('auth', () => {
   
-  // --- STATE (El Estado) ---
+  // --- STATE ---
   const usuario = ref<User | null>(null);
   const token = ref<string | null>(null);
 
-  // --- GETTERS (Computadas) ---
+  // --- GETTERS ---
   const isLoggedIn = computed(() => usuario.value !== null);
   const isAdmin = computed(() => {
     return usuario.value !== null && usuario.value.rol === 'admin';
   });
 
-  // --- ACTIONS (Acciones) ---
+  // --- ACTIONS ---
   function simularLogin(email: string, pass: string) {
     
     let rolSimulado = 'cliente';
@@ -43,9 +44,11 @@ export const useAuthStore = defineStore('auth', () => {
         "nombre": nombreSimulado,
         "email": email,
         "rol": rolSimulado,
-        "telefono": "55 1234 5678",
-        "cp": "06500",
-        "direccion": "Av. Insurgentes Sur 100, Col. Roma, CDMX" // <-- DATO SIMULADO AÑADIDO
+        "telefono": "",
+        "cp": "",
+        "direccion": "",
+        "rfc_curp": "",
+        "tarjeta": ""  
       },
       "token": "eyJh...TokenSimulado...YjM0In0"
     };

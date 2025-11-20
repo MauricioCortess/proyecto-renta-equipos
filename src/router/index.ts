@@ -4,6 +4,19 @@ import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  
+  // --- ¡ESTO ES LO NUEVO! ---
+  // Esta función controla el comportamiento del scroll
+  scrollBehavior(to, from, savedPosition) {
+    // Si el usuario usa el botón "Atrás" del navegador, vuelve a donde estaba
+    if (savedPosition) {
+      return savedPosition
+    }
+    // Si es una navegación normal, SIEMPRE sube al inicio (top: 0)
+    return { top: 0 }
+  },
+  // ---------------------------
+
   routes: [
     {
       path: '/',
@@ -11,37 +24,21 @@ const router = createRouter({
       component: HomeView,
     },
     {
-  path: '/catalogo',
-  name: 'catalogo',
-  component: () => import('../views/CatalogView.vue')
-},
-{
+      path: '/catalogo',
+      name: 'catalogo',
+      component: () => import('../views/CatalogView.vue')
+    },
+    {
       path: '/login',
       name: 'login',
       component: () => import('../views/LoginView.vue')
     },
     {
-      // El :id es un parámetro dinámico.
-      // Vue Router tomará el número de la URL y nos lo dará.
       path: '/equipo/:id', 
       name: 'detalle-equipo',
       component: () => import('../views/EquipmentDetailView.vue')
     },
     {
-  path: '/admin',
-  name: 'admin',
-  component: () => import('../views/AdminView.vue'),
-  // --- AÑADIMOS EL "GUARDIA" DE RUTA ---
-  beforeEnter: (to, from, next) => {
-    const auth = useAuthStore()
-    if (auth.isAdmin) {
-      next() // El usuario es admin, déjalo pasar
-    } else {
-      next('/') // El usuario no es admin, redirígelo al inicio
-    }
-  }
-},
-{
       path: '/nosotros',
       name: 'nosotros',
       component: () => import('../views/NosotrosView.vue')
@@ -50,13 +47,25 @@ const router = createRouter({
       path: '/perfil',
       name: 'perfil',
       component: () => import('../views/ProfileView.vue'),
-      // ¡Guardia de Ruta!
       beforeEnter: (to, from, next) => {
         const auth = useAuthStore()
         if (auth.isLoggedIn) {
-          next() // El usuario está logueado, déjalo pasar
+          next()
         } else {
-          next('/login') // No está logueado, envíalo al login
+          next('/login')
+        }
+      }
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('../views/AdminView.vue'),
+      beforeEnter: (to, from, next) => {
+        const auth = useAuthStore()
+        if (auth.isAdmin) {
+          next() 
+        } else {
+          next('/') 
         }
       }
     }

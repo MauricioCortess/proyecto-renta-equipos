@@ -5,15 +5,17 @@ export default {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
-    // La sección 'extend' es CRUCIAL.
-    // Si no pones 'extend', borras todos los colores por defecto de Tailwind.
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'], // <-- ESTO CAMBIA TODO EL TEXTO
+        // ESTA LÍNEA ES LA CLAVE PARA QUITAR LA LETRA ANTIGUA
+        sans: ['Inter', 'sans-serif'], 
       },
       colors: {
-        'brand-blue': '#0D1B2A',   // Tu azul oscuro
-        'brand-orange': '#FF7F11', // Tu naranja
+        'brand-blue': '#0D1B2A',
+        'brand-orange': '#FF7F11',
+      },
+      boxShadow: {
+        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
       }
     },
   },

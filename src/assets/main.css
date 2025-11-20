@@ -1,3 +1,8 @@
-@tailwind base
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* --- AGREGA ESTO AL FINAL PARA FORZAR LA FUENTE --- */
+body {
+  font-family: 'Inter', sans-serif;
+}

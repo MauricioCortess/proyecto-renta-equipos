@@ -1,32 +1,83 @@
 <script setup lang="ts">
-// Importamos RouterLink para los links de navegación
 import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-  <footer class="bg-brand-blue text-gray-300 py-10 mt-16">
+  <footer class="bg-brand-blue text-white pt-16 pb-8 mt-auto border-t border-gray-800">
     <div class="container mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
         
-        <div class="mb-4 md:mb-0">
-          <RouterLink to="/" class="flex items-center justify-center md:justify-start space-x-2 mb-2">
-            <img src="/logo.png" alt="RentxTech Logo" class="h-8">
-            <span class="text-white font-bold text-xl">RentxTech</span>
+        <div class="space-y-4">
+          <RouterLink to="/" class="flex items-center space-x-2">
+            <img src="/logo.png" alt="RentxTech Logo" class="h-10 rounded-md bg-white p-1">
+            <span class="text-2xl font-bold tracking-tight">Rentx<span class="text-brand-orange">Tech</span></span>
           </RouterLink>
-          <p class="text-sm">&copy; 2025 RentxTech. Todos los derechos reservados.</p>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Empoderamos tus proyectos con la mejor tecnología. Renta de equipo de cómputo de alto rendimiento, flexible y seguro.
+          </p>
+          <div class="flex space-x-4 pt-2">
+            <a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772 4.902 4.902 0 011.772-1.153c.636-.247 1.363-.416 2.427-.465C9.673 2.013 10.03 2 12.484 2h.08zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-brand-orange transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" /></svg>
+            </a>
+          </div>
         </div>
 
-        <div class="flex space-x-6 font-medium">
-          <RouterLink to="/" class="hover:text-brand-orange">Inicio</RouterLink>
-          <RouterLink to="/catalogo" class="hover:text-brand-orange">Catálogo</RouterLink>
-          <RouterLink to="/nosotros" class="hover:text-brand-orange">Nosotros</RouterLink>
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white uppercase tracking-wider">Explorar</h3>
+          <ul class="space-y-3 text-sm text-gray-400">
+            <li><RouterLink to="/" class="hover:text-brand-orange transition-colors">Inicio</RouterLink></li>
+            <li><RouterLink to="/catalogo" class="hover:text-brand-orange transition-colors">Catálogo Completo</RouterLink></li>
+            <li><RouterLink to="/nosotros" class="hover:text-brand-orange transition-colors">Sobre Nosotros</RouterLink></li>
+            <li><RouterLink to="/catalogo?categoria=laptop" class="hover:text-brand-orange transition-colors">Renta de Laptops</RouterLink></li>
+            <li><RouterLink to="/catalogo?categoria=workstation" class="hover:text-brand-orange transition-colors">Renta de PCs</RouterLink></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white uppercase tracking-wider">Soporte</h3>
+          <ul class="space-y-3 text-sm text-gray-400">
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Preguntas Frecuentes</a></li>
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Términos y Condiciones</a></li>
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Aviso de Privacidad</a></li>
+            <li><a href="#" class="hover:text-brand-orange transition-colors">Centro de Ayuda</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-bold mb-4 text-white uppercase tracking-wider">Mantente al día</h3>
+          <p class="text-gray-400 text-sm mb-4">Recibe ofertas exclusivas y noticias de tecnología.</p>
+          
+          <form class="flex flex-col space-y-2" @submit.prevent>
+            <input type="email" placeholder="Tu correo electrónico" class="bg-gray-800 border border-gray-700 text-white text-sm rounded px-4 py-2 focus:outline-none focus:border-brand-orange">
+            <button class="bg-brand-orange hover:bg-orange-600 text-black font-bold py-2 px-4 rounded transition-colors text-sm uppercase">
+              Suscribirse
+            </button>
+          </form>
+
+          <div class="mt-6 text-gray-400 text-sm">
+            <p class="flex items-center"><span class="mr-2">📧</span> maucortes2001@gmail.com</p>
+            <p class="flex items-center mt-2"><span class="mr-2">📞</span> +52 9981962797</p>
+          </div>
         </div>
 
       </div>
+
+      <div class="border-t border-gray-800 pt-8 text-center">
+        <p class="text-gray-500 text-sm">
+          &copy; 2025 RentxTech S.A. de C.V. Todos los derechos reservados.
+        </p>
+        <p class="text-gray-600 text-xs mt-2">
+          Esto esta Diseñado para la materia de Programación Web.
+        </p>
+      </div>
+
     </div>
   </footer>
 </template>
-
-<style scoped>
-/* Estilos solo para este componente si fueran necesarios */
-</style>
